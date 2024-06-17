@@ -1,6 +1,19 @@
 import Search from "./Search";
 import Boards from "./Boards";
+import Modal from "./Modal";
+import { useState } from "react";
+
 const Dashboard = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
+
+  const handleOpen = () => {
+    setOpenModal(true);
+  };
+
   return (
     <>
       <Search />
@@ -18,8 +31,12 @@ const Dashboard = () => {
       </div>
 
       <div className="Createcard">
-        <button className="button">Create a New Board</button>
+        <button className="button" onClick={handleOpen}>
+          Create a New Board
+        </button>
       </div>
+
+      {openModal && <Modal onClose={handleClose} />}
 
       <Boards />
     </>
