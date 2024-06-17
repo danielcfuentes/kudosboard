@@ -1,3 +1,5 @@
+import "./IndividualBoard.css";
+
 const IndividualBoard = () => {
   return (
     <div>
