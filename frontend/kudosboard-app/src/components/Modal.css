@@ -17,10 +17,10 @@
   padding: 0px;
   border-radius: 8px;
   /* max-width: 800px; */
-  width: 100%;
+  /* width: 100%; */
   position: relative;
-  color: lightgray;
-  height: 810px;
+  color: white;
+  /* height: 810px; */
   overflow: scroll;
 }
 

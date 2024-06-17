@@ -15,8 +15,25 @@ const Modal = ({ onClose }) => {
           &times;
         </button>
 
+        <h1>Create a New Board</h1>
+
         <div className="modal-details">
-          <h1> MODAL </h1>
+          <h4>Title:</h4>
+          <input type="text" placeholder="" />
+
+          <h4>Category:</h4>
+          <select>
+            <option value="">Select a Category</option>
+            <option value="">Recent</option>
+            <option value="">Celebration</option>
+            <option value="">Thank you</option>
+            <option value="">Inspiration</option>
+          </select>
+
+          <h4>Arthur:</h4>
+          <input type="text" placeholder="" />
+
+          <button className="create-button">Create Board</button>
         </div>
       </div>
     </section>
