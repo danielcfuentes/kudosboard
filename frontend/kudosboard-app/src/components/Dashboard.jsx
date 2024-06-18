@@ -2,6 +2,7 @@ import Search from "./Search";
 import Boards from "./Boards";
 import Modal from "./Modal";
 import { useState } from "react";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -15,8 +16,10 @@ const Dashboard = () => {
   };
 
   return (
-    <>
-      <Search />
+    <div className="bodyOfPage">
+      <div className="search-comp">
+        <Search />
+      </div>
 
       <div className="buttons_container">
         <button className="button">All</button>
@@ -39,7 +42,7 @@ const Dashboard = () => {
       {openModal && <Modal onClose={handleClose} />}
 
       <Boards />
-    </>
+    </div>
   );
 };
 

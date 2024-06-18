@@ -7,6 +7,8 @@ const Modal = ({ onClose }) => {
     e.stopPropagation();
   };
 
+  
+
   return (
     <section className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={handleModalClick}>
