@@ -25,12 +25,7 @@ const Search = () => {
                 </svg>
               </div>
               <div className="InputContainer">
-                <input
-                  type="text"
-                  //   value={search}
-                  //   onChange={handleSearch}
-                  placeholder="Search boards..."
-                ></input>
+                <input type="text" placeholder="Search boards..."></input>
               </div>
             </div>
           </div>

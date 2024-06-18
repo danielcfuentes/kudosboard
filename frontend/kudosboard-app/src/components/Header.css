@@ -1,11 +1,11 @@
 .header {
   width: 100%;
-  color: white;
   text-align: center;
   font-size: 30px;
   display: flex;
   justify-content: center;
-  margin-bottom: 0;
-  margin-top: 20px;
-  background-color: gray;
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  background-color: rgb(4 191 250 / var(--tw-bg-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }

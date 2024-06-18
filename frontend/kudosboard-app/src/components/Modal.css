@@ -16,11 +16,8 @@
   background: gray;
   padding: 0px;
   border-radius: 8px;
-  /* max-width: 800px; */
-  /* width: 100%; */
   position: relative;
   color: white;
-  /* height: 810px; */
   overflow: scroll;
 }
 
@@ -39,12 +36,3 @@
 .close-button:hover {
   color: red;
 }
-
-
-
-/* .modal-details {
-  padding: 20px;
-  background: linear-gradient(to top, #303030, rgba(48, 48, 48, 0));
-  position: relative;
-  margin-top: -80px;
-} */
