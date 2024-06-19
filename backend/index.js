@@ -2,7 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const { PrismaClient } = require("@prisma/client");
 const { parse } = require("dotenv");
 const prisma = new PrismaClient();
@@ -12,34 +12,39 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
 // retrieve all boards
-app.get("/", (req, res) => {
-  const board = prisma.board.findMany();
-  res.json(board);
+app.get("/boards", async (req, res) => {
+  const boards = await prisma.newBoard.findMany();
+  res.status(200).json(boards);
 });
 
 // create a new board
-app.post("/create", (req, res) => {
-  const {title, category, author} = req.body;
-  const newBoard = prisma.board.create({
+app.post("/boards", async (req, res) => {
+  const { title, category, author } = req.body;
+  const board = await prisma.newBoard.create({
     data: {
       title,
       category,
       author,
     },
   });
-  res.json(newBoard);
+  res.status(200).json(board);
 });
 
-// delete a board
-app.delete("/delete/:id", (req, res) => {
-  const { id } = req.params;
-  const deletedBoard = prisma.board.delete({
-    where: { id: parseInt(id) },
+// delete a board by id
+app.delete("/boards/:id", async (req, res) => {
+  console.log("id", req.params.id);
+  const deletedBoard = await prisma.newBoard.delete({
+    where: { id: parseInt(req.params.id) },
   });
-  res.json(deletedBoard);
+  res.status(200).json(deletedBoard);
+});
+
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:3000`);
 });

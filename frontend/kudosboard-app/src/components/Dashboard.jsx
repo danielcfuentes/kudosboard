@@ -1,11 +1,12 @@
 import Search from "./Search";
 import Boards from "./Boards";
 import Modal from "./Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Dashboard.css";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [boards, setBoards] = useState([]);
 
   const handleClose = () => {
     setOpenModal(false);
@@ -14,6 +15,15 @@ const Dashboard = () => {
   const handleOpen = () => {
     setOpenModal(true);
   };
+
+  useEffect(() => {
+    fetchboards();
+  }, []);
+
+  async function fetchboards() {
+    const response = await fetch("http://localhost:3000/boards");
+    console.log(response);
+  }
 
   return (
     <div className="bodyOfPage">
