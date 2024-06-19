@@ -1,8 +1,8 @@
 import Search from "./Search";
-import Boards from "./Boards";
 import Modal from "./Modal";
 import { useEffect, useState } from "react";
 import "./Dashboard.css";
+import IndividualBoard from "./IndividualBoard";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -21,9 +21,32 @@ const Dashboard = () => {
   }, []);
 
   async function fetchboards() {
-    const response = await fetch("http://localhost:3000/boards");
-    console.log(response);
+    fetch("http://localhost:3000/boards")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setBoards(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching photo:", error);
+      });
   }
+
+  const getBoards = boards.map((board, index) => {
+    return (
+      <IndividualBoard
+        key={index}
+        boardTitle={board.title}
+        boardCategory={board.category}
+        boardAuthor={board.author}
+      />
+    );
+  });
 
   return (
     <div className="bodyOfPage">
@@ -51,7 +74,7 @@ const Dashboard = () => {
 
       {openModal && <Modal onClose={handleClose} />}
 
-      <Boards />
+      {getBoards}
     </div>
   );
 };
