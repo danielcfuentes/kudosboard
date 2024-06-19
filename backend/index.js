@@ -44,6 +44,15 @@ app.delete("/boards/:id", async (req, res) => {
   res.status(200).json(deletedBoard);
 });
 
+// TODO: create something that can filter based on search
+
+// TODO: be able to filter by category
+app.get("/boards/:category", async (req, res) => {
+  const categoryBoards = await prisma.newBoard.findMany({
+    where: { category: req.params.category },
+  });
+  res.status(200).json(categoryBoards);
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:3000`);
