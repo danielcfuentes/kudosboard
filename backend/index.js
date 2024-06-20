@@ -47,7 +47,7 @@ app.delete("/boards/:id", async (req, res) => {
 app.get("/boards/getTitle/:title", async (req, res) => {
   const searchTitleBoard = await prisma.newBoard.findMany({
     where: {
-      title: {contains: req.params.title}
+      title: {startsWith: req.params.title}
     },
   });
   res.status(200).json(searchTitleBoard);
