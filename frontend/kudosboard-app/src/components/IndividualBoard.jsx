@@ -1,6 +1,7 @@
 import "./IndividualBoard.css";
 
 const IndividualBoard = ({ boardTitle, boardCategory, boardAuthor }) => {
+  
   return (
     <div>
       <section className="movie">

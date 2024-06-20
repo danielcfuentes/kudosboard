@@ -33,6 +33,8 @@ const Modal = ({ onClose }) => {
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
+
+    onClose();
   };
 
   const handleBoardTitle = (e) => {

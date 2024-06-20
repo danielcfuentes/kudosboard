@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchboards();
-  }, []);
+  }, [boards]);
 
   async function fetchboards() {
     fetch("http://localhost:3000/boards")
