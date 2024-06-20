@@ -1,7 +1,28 @@
 import "./IndividualBoard.css";
 
-const IndividualBoard = ({ boardTitle, boardCategory, boardAuthor }) => {
-  
+const IndividualBoard = ({ boardId, boardTitle, boardCategory, boardAuthor }) => {
+
+  const handleDeleteBoard = () => {
+    console.log("delete board");
+    console.log(boardId);
+    fetch(`http://localhost:3000/boards/${boardId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error fetching posts:", error));
+  };
+
   return (
     <div>
       <section className="movie">
@@ -18,7 +39,9 @@ const IndividualBoard = ({ boardTitle, boardCategory, boardAuthor }) => {
         <div className="button-container">
           <button className="button">View Board</button>
 
-          <button className="button">Delete Board</button>
+          <button className="button" onClick={handleDeleteBoard}>
+            Delete Board
+          </button>
         </div>
       </section>
     </div>

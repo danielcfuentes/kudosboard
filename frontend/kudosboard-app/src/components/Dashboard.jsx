@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchboards();
-  }, [boards]);
+  }, []);
 
   async function fetchboards() {
     fetch("http://localhost:3000/boards")
@@ -38,9 +38,11 @@ const Dashboard = () => {
   }
 
   const getBoards = boards.map((board, index) => {
+    console.log(board.id);
     return (
       <IndividualBoard
         key={index}
+        boardId={board.id}
         boardTitle={board.title}
         boardCategory={board.category}
         boardAuthor={board.author}
