@@ -47,7 +47,7 @@ app.delete("/boards/:id", async (req, res) => {
 app.get("/boards/getTitle/:title", async (req, res) => {
   const searchTitleBoard = await prisma.newBoard.findMany({
     where: {
-      title: {startsWith: req.params.title}
+      title: { startsWith: req.params.title, mode: "insensitive" },
     },
   });
   res.status(200).json(searchTitleBoard);
@@ -55,10 +55,24 @@ app.get("/boards/getTitle/:title", async (req, res) => {
 
 // TODO: be able to filter by category
 app.get("/boards/getCategory/:category", async (req, res) => {
-  const categoryBoards = await prisma.newBoard.findMany({
-    where: { category: req.params.category },
-  });
-  res.status(200).json(categoryBoards);
+  if (req.params.category === "All") {
+    const allBoards = await prisma.newBoard.findMany();
+    res.status(200).json(allBoards);
+
+  } else if (req.params.category === "Recent") {
+    const recentBoards = await prisma.newBoard.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
+    res.status(200).json(recentBoards);
+
+  } else {
+    const categoryBoards = await prisma.newBoard.findMany({
+      where: { category: req.params.category },
+    });
+    res.status(200).json(categoryBoards);
+  }
 });
 
 app.listen(PORT, () => {

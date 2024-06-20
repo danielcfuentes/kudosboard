@@ -37,6 +37,23 @@ const Dashboard = () => {
       });
   }
 
+  const getCategory = (category) => {
+    fetch(`http://localhost:3000/boards/getCategory/${category.target.value}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setBoards(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching photo:", error);
+      });
+  };
+
   const getBoards = boards?.map((board, index) => {
     return (
       <IndividualBoard
@@ -57,15 +74,25 @@ const Dashboard = () => {
       </div>
 
       <div className="buttons_container">
-        <button className="button">All</button>
+        <button className="button" onClick={getCategory} value={"All"}>
+          All
+        </button>
 
-        <button className="button">Recent</button>
+        <button className="button" onClick={getCategory} value={"Recent"}>
+          Recent
+        </button>
 
-        <button className="button">Celebration</button>
+        <button className="button" onClick={getCategory} value={"Celebration"}>
+          Celebration
+        </button>
 
-        <button className="button">Thank You</button>
+        <button className="button" onClick={getCategory} value={"Thank You"}>
+          Thank You
+        </button>
 
-        <button className="button">Inspiration</button>
+        <button className="button" onClick={getCategory} value={"Inspiration"}>
+          Inspiration
+        </button>
       </div>
 
       <div className="Createcard">
