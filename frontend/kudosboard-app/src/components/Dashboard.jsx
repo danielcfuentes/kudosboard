@@ -101,7 +101,7 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {openModal && <Modal onClose={handleClose} refreshBoards={fetchboards} />}
+      {openModal && <Modal onClose={handleClose} />}
 
       {getBoards}
     </div>
