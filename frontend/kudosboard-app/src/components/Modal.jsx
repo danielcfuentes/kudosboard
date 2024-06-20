@@ -76,7 +76,7 @@ const Modal = ({ onClose, refreshBoards }) => {
             <option value="Inspiration">Inspiration</option>
           </select>
 
-          <h4>Arthur:</h4>
+          <h4>(Optional) Arthur:</h4>
           <input
             type="text"
             placeholder=""

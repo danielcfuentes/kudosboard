@@ -1,4 +1,6 @@
 import "./IndividualBoard.css";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const IndividualBoard = ({
   refreshBoards,
@@ -41,7 +43,9 @@ const IndividualBoard = ({
         </div>
 
         <div className="button-container">
-          <button className="button">View Board</button>
+          <Link to={`/boards/${boardId}`}>
+            <button className="button">View Board</button>
+          </Link>
 
           <button className="button" onClick={handleDeleteBoard}>
             Delete Board

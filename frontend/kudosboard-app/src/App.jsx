@@ -2,22 +2,19 @@ import "./App.css";
 import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
+import React from "react";
+import CardPage from "./components/CardPage";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 const App = () => {
   return (
-    <div className="App">
-      <section id="container">
-        <header id="AppHeader">
-          <Header />
-        </header>
-        <body id="AppBody">
-          <Dashboard />
-        </body>
-      </section>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/boards" element={<><Header/> <Dashboard /> <Footer/></>} />
+        <Route path="/boards/:id" element={<><Header/> <CardPage /> <Footer/></>} />
+      </Routes>
 
-      <footer id="AppFooter">
-        <Footer />
-      </footer>
-    </div>
+    </BrowserRouter>
   );
 };
 
