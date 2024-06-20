@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "./Modal.css";
 import { useEffect, useState } from "react";
 
-const Modal = ({ onClose }) => {
+const Modal = ({ onClose, refreshBoards }) => {
   const [boardTitle, setBoardTitle] = useState("");
   const [boardCategory, setBoardCategory] = useState("");
   const [boardArthur, setBoardArthur] = useState("");
@@ -25,7 +25,7 @@ const Modal = ({ onClose }) => {
       }),
     })
       .then((response) => {
-          console.log(response);
+        console.log(response);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -33,7 +33,7 @@ const Modal = ({ onClose }) => {
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
-
+    refreshBoards();
     onClose();
   };
 

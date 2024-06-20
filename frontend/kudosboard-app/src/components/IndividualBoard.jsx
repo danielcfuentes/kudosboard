@@ -1,16 +1,18 @@
 import "./IndividualBoard.css";
 
-const IndividualBoard = ({ boardId, boardTitle, boardCategory, boardAuthor }) => {
-
+const IndividualBoard = ({
+  refreshBoards,
+  boardId,
+  boardTitle,
+  boardCategory,
+  boardAuthor,
+}) => {
   const handleDeleteBoard = () => {
-    console.log("delete board");
-    console.log(boardId);
     fetch(`http://localhost:3000/boards/${boardId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-
     })
       .then((response) => {
         console.log(response);
@@ -21,6 +23,8 @@ const IndividualBoard = ({ boardId, boardTitle, boardCategory, boardAuthor }) =>
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
+
+    refreshBoards();
   };
 
   return (

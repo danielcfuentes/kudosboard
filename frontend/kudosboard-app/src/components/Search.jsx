@@ -1,6 +1,36 @@
 import "./Search.css";
+import { useEffect, useState } from "react";
+const Search = ({ resetSearch, boardsData }) => {
+  const [boardTitle, setBoardTitle] = useState("");
 
-const Search = () => {
+  const handleSearchBoard = (event) => {
+    const value = event.target.value;
+    setBoardTitle(value);
+
+    if (boardTitle === "") {
+      resetSearch();
+    } else {
+      performSearch(value);
+    }
+  };
+
+  const performSearch = (value) => {
+    console.log("performing search");
+    fetch(`http://localhost:3000/boards/getTitle/${value}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => boardsData(data))
+      .catch((error) => console.error("Error fetching posts:", error));
+  };
   return (
     <>
       <form className="searchContainer">
@@ -25,7 +55,12 @@ const Search = () => {
                 </svg>
               </div>
               <div className="InputContainer">
-                <input type="text" placeholder="Search boards..."></input>
+                <input
+                  type="text"
+                  placeholder="Search boards..."
+                  value={boardTitle}
+                  onChange={handleSearchBoard}
+                ></input>
               </div>
             </div>
           </div>

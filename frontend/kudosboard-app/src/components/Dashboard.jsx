@@ -42,6 +42,7 @@ const Dashboard = () => {
     return (
       <IndividualBoard
         key={index}
+        refreshBoards={fetchboards}
         boardId={board.id}
         boardTitle={board.title}
         boardCategory={board.category}
@@ -53,7 +54,7 @@ const Dashboard = () => {
   return (
     <div className="bodyOfPage">
       <div className="search-comp">
-        <Search />
+        <Search resetSearch={fetchboards} boardsData={setBoards} />
       </div>
 
       <div className="buttons_container">
@@ -74,7 +75,7 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {openModal && <Modal onClose={handleClose} />}
+      {openModal && <Modal onClose={handleClose} refreshBoards={fetchboards} />}
 
       {getBoards}
     </div>
