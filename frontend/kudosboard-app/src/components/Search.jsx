@@ -6,13 +6,15 @@ const Search = ({ resetSearch, boardsData }) => {
   const handleSearchBoard = (event) => {
     const value = event.target.value;
     setBoardTitle(value);
+  };
 
+  useEffect(() => {
     if (boardTitle === "") {
       resetSearch();
     } else {
-      performSearch(value);
+      performSearch(boardTitle);
     }
-  };
+  }, [boardTitle]);
 
   const performSearch = (value) => {
     console.log("performing search");
@@ -59,7 +61,7 @@ const Search = ({ resetSearch, boardsData }) => {
                   type="text"
                   placeholder="Search boards..."
                   value={boardTitle}
-                  onChange={handleSearchBoard}
+                  onInput={handleSearchBoard}
                 ></input>
               </div>
             </div>

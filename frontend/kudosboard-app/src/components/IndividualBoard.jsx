@@ -24,7 +24,7 @@ const IndividualBoard = ({
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
 
-    refreshBoards();
+    window.location.reload();
   };
 
   return (

@@ -33,8 +33,7 @@ const Modal = ({ onClose, refreshBoards }) => {
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
-    refreshBoards();
-    onClose();
+    window.location.reload();
   };
 
   const handleBoardTitle = (e) => {
@@ -73,7 +72,7 @@ const Modal = ({ onClose, refreshBoards }) => {
             <option value="SelectCategory">Select a Category</option>
             <option value="Recent">Recent</option>
             <option value="Celebration">Celebration</option>
-            <option value="Thanks">Thank you</option>
+            <option value="Thank You">Thank you</option>
             <option value="Inspiration">Inspiration</option>
           </select>
 

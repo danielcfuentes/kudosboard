@@ -37,7 +37,6 @@ app.post("/boards", async (req, res) => {
 
 // delete a board by id
 app.delete("/boards/:id", async (req, res) => {
-  console.log("id", req.params.id);
   const deletedBoard = await prisma.newBoard.delete({
     where: { id: parseInt(req.params.id) },
   });
@@ -46,16 +45,16 @@ app.delete("/boards/:id", async (req, res) => {
 
 // TODO: create something that can filter by title based on search
 app.get("/boards/getTitle/:title", async (req, res) => {
-  console.log("title", req.params.title);
   const searchTitleBoard = await prisma.newBoard.findMany({
-    where: { title: req.params.title },
+    where: {
+      title: {contains: req.params.title}
+    },
   });
   res.status(200).json(searchTitleBoard);
 });
 
 // TODO: be able to filter by category
 app.get("/boards/getCategory/:category", async (req, res) => {
-  console.log("category", req.params.category);
   const categoryBoards = await prisma.newBoard.findMany({
     where: { category: req.params.category },
   });

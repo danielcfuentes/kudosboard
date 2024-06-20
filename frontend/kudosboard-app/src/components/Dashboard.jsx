@@ -37,8 +37,7 @@ const Dashboard = () => {
       });
   }
 
-  const getBoards = boards.map((board, index) => {
-    console.log(board.id);
+  const getBoards = boards?.map((board, index) => {
     return (
       <IndividualBoard
         key={index}
