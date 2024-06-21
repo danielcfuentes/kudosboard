@@ -2,13 +2,14 @@ import PropTypes from "prop-types";
 import "./Modal.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./CardPageModal.css";
 
 const CardPageModal = ({ onClose }) => {
   const [cardTitle, setCardTitle] = useState("");
   const [cardDescription, setCardDescription] = useState("");
   const [cardArthur, setCardArthur] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [cardGIF, setCardGIF] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
+  const [cardGIF, setCardGIF] = useState([]);
   const params = useParams();
 
   const handleModalClick = (e) => {
@@ -52,21 +53,28 @@ const CardPageModal = ({ onClose }) => {
     setCardDescription(e.target.value);
   };
 
-  const handleSubmit = () => {
-    fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=jMP4mg82kvdDMZaoKpWwPUXrDuxsluHK&q=${searchQuery}&limit=10&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        // Do something with the data, such as rendering it on the page
-        setCardGIF(data.data[0].images.original.url);
-        console.log(data);
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the request
-        console.error(error);
-      });
+  const handleSearchQuery = function (e) {
+    const query = e.target.value;
+    searchGIFS(query);
   };
+
+  const searchGIFS = async (query) => {
+    try {
+      const response = await fetch(
+        `https://api.giphy.com/v1/gifs/search?api_key=jMP4mg82kvdDMZaoKpWwPUXrDuxsluHK&q=${query}&limit=10&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
+      );
+      const data = await response.json();
+      console.log(data);
+      setCardGIF(data.data);
+      console.log("data.data:", data.data);
+    } catch (error) {
+      // Handle any errors that occurred during the request
+      console.log("inisde of error:", error);
+      console.error(error);
+    }
+  };
+
+  console.log("cardGIF:", cardGIF);
 
   // RETURN -------------------------------------------------------------------
   return (
@@ -97,14 +105,20 @@ const CardPageModal = ({ onClose }) => {
 
           <input
             type="text"
-            value={cardGIF}
-            onInput={(event) => setSearchQuery(event.target.value)}
+            onChange={handleSearchQuery}
             placeholder="Search GIFs..."
             className="modal-input"
           />
-          <button type="submit" onClick={handleSubmit} className="create-button">
-            Search
-          </button>
+
+          {cardGIF.length > 0 && (
+            <div className="GIFcontainer">
+              {cardGIF.map((gif, index) => (
+                <div key={index}>
+                  <img className="GIFimg" src={gif.images.original.url} alt="GIF" />
+                </div>
+              ))}
+            </div>
+          )}
 
           <input
             type="text"
