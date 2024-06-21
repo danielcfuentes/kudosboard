@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "./Modal.css";
 import { useEffect, useState } from "react";
 
-const Modal = ({ onClose, refreshBoards }) => {
+const Modal = ({ onClose, refreshBoards, setIsCreated, setBoards }) => {
   const [boardTitle, setBoardTitle] = useState("");
   const [boardCategory, setBoardCategory] = useState("");
   const [boardArthur, setBoardArthur] = useState("");
@@ -12,6 +12,7 @@ const Modal = ({ onClose, refreshBoards }) => {
   };
 
   const handleCreateNewBoard = () => {
+    setIsCreated(true);
     fetch("http://localhost:3000/boards", {
       method: "POST",
       headers: {
@@ -33,7 +34,8 @@ const Modal = ({ onClose, refreshBoards }) => {
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
 
-    window.location.reload();
+
+    onClose();
   };
 
   const handleBoardTitle = (e) => {

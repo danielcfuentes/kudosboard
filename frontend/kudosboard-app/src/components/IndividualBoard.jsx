@@ -9,6 +9,7 @@ const IndividualBoard = ({
   boardCategory,
   boardAuthor,
   boardImage,
+  setIsDeleted
 }) => {
   const handleDeleteBoard = () => {
     fetch(`http://localhost:3000/boards/${boardId}`, {
@@ -27,7 +28,7 @@ const IndividualBoard = ({
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
 
-    window.location.reload();
+    setIsDeleted(true);
   };
 
   return (

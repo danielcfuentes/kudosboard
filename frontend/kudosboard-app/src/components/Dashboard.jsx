@@ -7,6 +7,8 @@ import IndividualBoard from "./IndividualBoard";
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
   const [boards, setBoards] = useState([]);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [isCreated, setIsCreated] = useState(false);
 
   const handleClose = () => {
     setOpenModal(false);
@@ -17,8 +19,17 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetchboards();
-  }, []);
+    if (isDeleted) {
+      setIsDeleted(false);
+      fetchboards();
+    }
+    if (isCreated) {
+      fetchboards();
+      setIsCreated(false);
+    } else {
+      fetchboards();
+    }
+  }, [isDeleted, isCreated]);
 
   async function fetchboards() {
     fetch("http://localhost:3000/boards")
@@ -64,6 +75,7 @@ const Dashboard = () => {
         boardImage={board.imageSrc}
         boardCategory={board.category}
         boardAuthor={board.author}
+        setIsDeleted={setIsDeleted}
       />
     );
   });
@@ -104,7 +116,14 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {openModal && <Modal onClose={handleClose} refreshBoards={fetchboards} />}
+      {openModal && (
+        <Modal
+          onClose={handleClose}
+          refreshBoards={fetchboards}
+          setIsCreated={setIsCreated}
+          setBoards={setBoards}
+        />
+      )}
 
       <div className="boards">{getBoards}</div>
     </div>
