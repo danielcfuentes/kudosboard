@@ -56,31 +56,33 @@ const Modal = ({ onClose, refreshBoards }) => {
           &times;
         </button>
 
-        <h1>Create a New Board</h1>
+        <h1 id="modalTitle">Create a New Board</h1>
 
         <div className="modal-details">
-          <h4>Title:</h4>
+          <label className="modalheaders">Title:</label>
           <input
             type="text"
             placeholder=""
             value={boardTitle}
             onChange={handleBoardTitle}
+            className="modal-input"
           />
 
-          <h4>Category:</h4>
-          <select onChange={(e) => handleCategory(e)}>
+          <label className="modalheaders">Category:</label>
+          <select onChange={(e) => handleCategory(e)} className="modal-category">
             <option value="SelectCategory">Select a Category</option>
             <option value="Celebration">Celebration</option>
             <option value="Thank You">Thank you</option>
             <option value="Inspiration">Inspiration</option>
           </select>
 
-          <h4>(Optional) Arthur:</h4>
+          <label className="modalheaders">(Optional) Arthur:</label>
           <input
             type="text"
             placeholder=""
             value={boardArthur}
             onChange={handleBoardArthur}
+            className="modal-input"
           />
 
           <button className="create-button" onClick={handleCreateNewBoard}>

@@ -13,12 +13,26 @@
 }
 
 .modal-content {
-  background: gray;
-  padding: 0px;
-  border-radius: 8px;
-  position: relative;
-  color: white;
-  overflow: scroll;
+  background-color: #fff;
+  box-shadow: 0 4px 8px #0000001a;
+  left: 50%;
+  max-width: 400px;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+#modalTitle {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
 }
 
 .close-button {
@@ -29,10 +43,44 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: white;
+  color: black;
   z-index: 10;
 }
 
 .close-button:hover {
   color: red;
+}
+
+.create-button {
+  background-color: teal;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin: 0 0 15px;
+  padding: 8px;
+  width: 98%;
+}
+
+.modal-details{
+  display: flex;
+  flex-direction: column;
+}
+
+.modalheaders{
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.modal-input{
+  margin-bottom: 15px;
+  padding: 8px;
+  width: 90%;
+}
+
+.modal-category{
+  margin-bottom: 15px;
+  padding: 8px;
+  width: 95%;
 }

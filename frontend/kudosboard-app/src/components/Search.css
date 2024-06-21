@@ -2,6 +2,13 @@
   --border-radius: 10px;
 }
 
+.searchContainer {
+  display: flex;
+  width: 250px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .Card {
   padding: 1px;
   border-radius: var(--border-radius);
@@ -12,7 +19,6 @@
   );
   overflow: hidden;
   box-shadow: -2px -2px 6px rgba(#fff, 0.6), 2px 2px 12px #c8d8e7;
-  width: 100%;
 }
 
 .CardInner {
@@ -44,7 +50,7 @@
   color: black;
 }
 
-input {
+.Input {
   background-color: #e3edf7;
   padding: 16px;
   border: none;

@@ -1,19 +1,22 @@
 import PropTypes from "prop-types";
 import "./Modal.css";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const CardPageModal = ({ onClose }) => {
   const [cardTitle, setCardTitle] = useState("");
   const [cardDescription, setCardDescription] = useState("");
   const [cardArthur, setCardArthur] = useState("");
-  const [cardQIF, setCardQIF] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [cardGIF, setCardGIF] = useState("");
+  const params = useParams();
 
   const handleModalClick = (e) => {
     e.stopPropagation();
   };
 
   const handleCreateNewCard = () => {
-    fetch("http://localhost:3000/cards", {
+    fetch(`http://localhost:3000/cards/${params.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +24,7 @@ const CardPageModal = ({ onClose }) => {
       body: JSON.stringify({
         title: cardTitle,
         description: cardDescription,
-        gif: cardQIF,
+        imageSrc: cardGIF,
         owner: cardArthur,
       }),
     })
@@ -34,7 +37,7 @@ const CardPageModal = ({ onClose }) => {
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
-    window?.location.reload();
+    window.location.reload();
   };
 
   const handleCardTitle = (e) => {
@@ -47,6 +50,22 @@ const CardPageModal = ({ onClose }) => {
 
   const handleCardDescription = (e) => {
     setCardDescription(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    fetch(
+      `https://api.giphy.com/v1/gifs/search?api_key=jMP4mg82kvdDMZaoKpWwPUXrDuxsluHK&q=${searchQuery}&limit=10&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // Do something with the data, such as rendering it on the page
+        setCardGIF(data.data[0].images.original.url);
+        console.log(data);
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the request
+        console.error(error);
+      });
   };
 
   // RETURN -------------------------------------------------------------------
@@ -75,16 +94,23 @@ const CardPageModal = ({ onClose }) => {
           />
 
           <form>
-            <input type="text" placeholder="Search GIFs..." />
-            <button>Search</button>
-
             <input
               type="text"
-              value={cardArthur}
-              onInput={handleCardArthur}
-              placeholder="Enter owner (optional)"
+              value={cardGIF}
+              onInput={(event) => setSearchQuery(event.target.value)}
+              placeholder="Search GIFs..."
             />
+            <button type="submit" onClick={handleSubmit}>
+              Search
+            </button>
           </form>
+
+          <input
+            type="text"
+            value={cardArthur}
+            onInput={handleCardArthur}
+            placeholder="Enter owner (optional)"
+          />
           <button className="create-button" onClick={handleCreateNewCard}>
             Create Card
           </button>

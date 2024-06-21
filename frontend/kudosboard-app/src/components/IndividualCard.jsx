@@ -1,6 +1,6 @@
 import "./IndividualBoard.css";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const IndividualCard = ({
   cardId,
@@ -26,6 +26,7 @@ const IndividualCard = ({
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
+    window.location.reload();
   };
 
   const handleLikeCard = () => {

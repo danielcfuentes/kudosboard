@@ -2,10 +2,16 @@
   width: 100%;
   text-align: center;
   font-size: 30px;
-  display: flex;
+  display: block;
   justify-content: center;
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  background-color: rgb(4 191 250 / var(--tw-bg-opacity));
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  background-color: lightblue;
+  unicode-bidi: isolate;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(45, 45, 45, 0.87);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }

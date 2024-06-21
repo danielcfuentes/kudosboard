@@ -24,23 +24,25 @@ app.get("/boards", async (req, res) => {
 
 // create a new board
 //GIPHY
-app.post('/boards', async (req, res) => {
-    const { title, category, author } = req.body
+app.post("/boards", async (req, res) => {
+  const { title, category, author } = req.body;
 
-    const response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}`)
-    const gifData = await response.json()
-    const imageUrl = gifData.data.images.downsized.url
+  const response = await fetch(
+    `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}`
+  );
+  const gifData = await response.json();
+  const imageUrl = gifData.data.images.downsized.url;
 
-    const board = await prisma.newBoard.create({
-        data: {
-            title,
-            imageSrc: imageUrl,
-            category,
-            author
-        }
-    })
-    res.json(board)
-})
+  const board = await prisma.newBoard.create({
+    data: {
+      title,
+      imageSrc: imageUrl,
+      category,
+      author,
+    },
+  });
+  res.json(board);
+});
 
 // delete a board by id
 app.delete("/boards/:id", async (req, res) => {
@@ -65,7 +67,6 @@ app.get("/boards/getCategory/:category", async (req, res) => {
   if (req.params.category === "All") {
     const allBoards = await prisma.newBoard.findMany();
     res.status(200).json(allBoards);
-
   } else if (req.params.category === "Recent") {
     const recentBoards = await prisma.newBoard.findMany({
       orderBy: {
@@ -73,7 +74,6 @@ app.get("/boards/getCategory/:category", async (req, res) => {
       },
     });
     res.status(200).json(recentBoards);
-
   } else {
     const categoryBoards = await prisma.newBoard.findMany({
       where: { category: req.params.category },
@@ -86,18 +86,24 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:3000`);
 });
 
-
-// CARD Page
+// CARD Page -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // retrieve all cards
-app.get("/cards", async (req, res) => {
-  const cards = await prisma.newCard.findMany();
-  res.status(200).json(cards);
+app.get("/cards/:id", async (req, res) => {
+  const board = await prisma.newBoard.findUnique({
+    where: { id: parseInt(req.params.id) },
+    include: { cards: true },
+  });
+  res.status(200).json(board.cards);
 });
 
 // create a new card
-app.post("/cards", async (req, res) => {
-  const { title, description, gif, owner} = req.body;
+app.post("/cards/:id", async (req, res) => {
+  const board = await prisma.newBoard.findUnique({
+    where: { id: parseInt(req.params.id) },
+    include: { cards: true },
+  });
+  const { title, description, gif, owner } = req.body;
   const card = await prisma.newCard.create({
     data: {
       title,
@@ -105,10 +111,12 @@ app.post("/cards", async (req, res) => {
       gif,
       owner,
       likes: 0,
+      newBoardId: parseInt(req.params.id),
     },
   });
   res.status(200).json(card);
 });
+
 
 // delete a card by id
 app.delete("/cards/:id", async (req, res) => {

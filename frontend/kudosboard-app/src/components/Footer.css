@@ -1,11 +1,13 @@
 footer {
-  justify-content: center;
   width: 100%;
   background-color: #3a4651;
+  margin-top: 20px;
 }
 
 .footer-section {
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .footer-social li {
@@ -30,27 +32,6 @@ footer {
   justify-content: center;
   line-height: 0.3;
   padding: 10px;
-  margin: 10px;
-}
-
-.subscribe-form {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-.subscribe-button {
-  border: 1px solid transparent;
-  font-family: museo-sans, sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  justify-content: center;
-}
-
-.subscribe-input {
-  display: flex;
-  width: 20%;
-  max-width: 60%;
 }
 
 .footer2 {
@@ -71,7 +52,6 @@ a {
 .footer-logo {
   display: flex;
   width: 100%;
-  gap: 560px;
   text-align: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }

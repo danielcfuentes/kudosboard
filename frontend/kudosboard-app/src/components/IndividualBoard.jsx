@@ -32,24 +32,24 @@ const IndividualBoard = ({
 
   return (
     <div>
-      <section className="movie">
+      <section className="board">
         <img
-          id="movie-img"
+          id="board-img"
           src={boardImage}
         />
         <div className="text-card">
           <h2 id="truncate">{boardTitle} </h2>
-          <h4>{boardCategory}</h4>
-          <h4>{boardAuthor}</h4>
+          <h4>Category: {boardCategory}</h4>
+          <h4>Author: {boardAuthor}</h4>
         </div>
 
         <div className="button-container">
           <Link to={`/boards/${boardId}`}>
-            <button className="button">View Board</button>
+            <button className="button">View</button>
           </Link>
 
           <button className="button" onClick={handleDeleteBoard}>
-            Delete Board
+            Delete
           </button>
         </div>
       </section>

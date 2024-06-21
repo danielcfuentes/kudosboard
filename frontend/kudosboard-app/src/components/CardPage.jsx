@@ -1,16 +1,20 @@
 import CardPageModal from "./CardPageModal";
 import React, { useEffect, useState } from "react";
 import IndividualCard from "./IndividualCard";
+import { useParams } from "react-router-dom";
+
 const CardPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [cards, setCards] = useState([]);
+  const params = useParams();
+
 
   useEffect(() => {
     fetchCards();
   }, []);
 
   async function fetchCards() {
-    fetch("http://localhost:3000/cards")
+    fetch(`http://localhost:3000/cards/${params.id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

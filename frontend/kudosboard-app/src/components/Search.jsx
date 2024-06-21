@@ -62,6 +62,7 @@ const Search = ({ resetSearch, boardsData }) => {
                   placeholder="Search boards..."
                   value={boardTitle}
                   onInput={handleSearchBoard}
+                  className="Input"
                 ></input>
               </div>
             </div>

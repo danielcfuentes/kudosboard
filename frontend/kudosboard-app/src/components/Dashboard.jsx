@@ -71,7 +71,9 @@ const Dashboard = () => {
   return (
     <div className="bodyOfPage">
       <div className="search-comp">
-        <Search resetSearch={fetchboards} boardsData={setBoards} />
+        <div className="search-bar">
+          <Search resetSearch={fetchboards} boardsData={setBoards} />
+        </div>
       </div>
 
       <div className="buttons_container">
@@ -102,9 +104,9 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {openModal && <Modal onClose={handleClose} refreshBoards={fetchboards}/>}
+      {openModal && <Modal onClose={handleClose} refreshBoards={fetchboards} />}
 
-      {getBoards}
+      <div className="boards">{getBoards}</div>
     </div>
   );
 };
