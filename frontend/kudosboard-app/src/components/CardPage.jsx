@@ -43,6 +43,7 @@ const CardPage = () => {
         key={index}
         cardId={card.id}
         cardTitle={card.title}
+        cardImage={card.gif}
         cardDescription={card.description}
         cardOwner={card.owner}
         cardLikes={card.likes}

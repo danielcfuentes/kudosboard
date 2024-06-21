@@ -6,6 +6,7 @@ const IndividualCard = ({
   cardId,
   cardTitle,
   cardDescription,
+  cardImage,
   cardOwner,
   cardLikes,
 }) => {
@@ -50,7 +51,7 @@ const IndividualCard = ({
       <div className="board">
         <div className="text-card">
           <h2>{cardTitle}</h2>
-          <img id="board-img" src="https://i.imgur.com/000.png" alt="gif iamge"/>
+          <img id="board-img" src={cardImage} alt="gif iamge"/>
           <h4>Description: {cardDescription}</h4>
           <h4>Owner: {cardOwner}</h4>
         </div>

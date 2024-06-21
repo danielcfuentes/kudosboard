@@ -10,6 +10,7 @@ const CardPageModal = ({ onClose }) => {
   const [cardArthur, setCardArthur] = useState("");
   // const [searchQuery, setSearchQuery] = useState("");
   const [cardGIF, setCardGIF] = useState([]);
+  const [gifUrl, setGifUrl] = useState("");
   const params = useParams();
 
   const handleModalClick = (e) => {
@@ -25,7 +26,7 @@ const CardPageModal = ({ onClose }) => {
       body: JSON.stringify({
         title: cardTitle,
         description: cardDescription,
-        imageSrc: cardGIF,
+        gif: gifUrl,
         owner: cardArthur,
       }),
     })
@@ -57,6 +58,12 @@ const CardPageModal = ({ onClose }) => {
     const query = e.target.value;
     searchGIFS(query);
   };
+
+  const handleGIFSelect = (url) => {
+    setGifUrl(url);
+  };
+
+  console.log("gifurl:", gifUrl)
 
   const searchGIFS = async (query) => {
     try {
@@ -113,7 +120,7 @@ const CardPageModal = ({ onClose }) => {
           {cardGIF.length > 0 && (
             <div className="GIFcontainer">
               {cardGIF.map((gif, index) => (
-                <div key={index}>
+                <div key={index} onClick={() => handleGIFSelect(gif.images.original.url)}>
                   <img className="GIFimg" src={gif.images.original.url} alt="GIF" />
                 </div>
               ))}
