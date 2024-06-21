@@ -2,12 +2,12 @@ import CardPageModal from "./CardPageModal";
 import React, { useEffect, useState } from "react";
 import IndividualCard from "./IndividualCard";
 import { useParams } from "react-router-dom";
+import "./CardPage.css";
 
 const CardPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [cards, setCards] = useState([]);
   const params = useParams();
-
 
   useEffect(() => {
     fetchCards();
@@ -45,18 +45,22 @@ const CardPage = () => {
         cardTitle={card.title}
         cardDescription={card.description}
         cardOwner={card.owner}
-        cardLikes ={card.likes}
+        cardLikes={card.likes}
       />
     );
   });
 
   return (
-    <div>
-      <button onClick={handleOpen}>Create a Card</button>
+    <div className="bodyOfPage">
+      <div className="Createcard">
+        <button className="button" id="button-to-create"onClick={handleOpen}>
+          Create a Card
+        </button>
+      </div>
 
       {openModal && <CardPageModal onClose={handleClose} />}
 
-      {getCards}
+      <div className="boards">{getCards}</div>
     </div>
   );
 };

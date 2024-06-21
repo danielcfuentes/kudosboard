@@ -76,14 +76,15 @@ const CardPageModal = ({ onClose }) => {
           &times;
         </button>
 
-        <h1>Create a New Card</h1>
+        <h1 id="modalTitle">Create a New Card</h1>
 
         <div className="modal-details">
           <input
             type="text"
-            placeholder="Enter Card Title"
+            placeholder="Enter card title"
             value={cardTitle}
             onInput={handleCardTitle}
+            className="modal-input"
           />
 
           <input
@@ -91,25 +92,26 @@ const CardPageModal = ({ onClose }) => {
             placeholder="Enter card description"
             value={cardDescription}
             onInput={handleCardDescription}
+            className="modal-input"
           />
 
-          <form>
-            <input
-              type="text"
-              value={cardGIF}
-              onInput={(event) => setSearchQuery(event.target.value)}
-              placeholder="Search GIFs..."
-            />
-            <button type="submit" onClick={handleSubmit}>
-              Search
-            </button>
-          </form>
+          <input
+            type="text"
+            value={cardGIF}
+            onInput={(event) => setSearchQuery(event.target.value)}
+            placeholder="Search GIFs..."
+            className="modal-input"
+          />
+          <button type="submit" onClick={handleSubmit} className="create-button">
+            Search
+          </button>
 
           <input
             type="text"
             value={cardArthur}
             onInput={handleCardArthur}
             placeholder="Enter owner (optional)"
+            className="modal-input"
           />
           <button className="create-button" onClick={handleCreateNewCard}>
             Create Card

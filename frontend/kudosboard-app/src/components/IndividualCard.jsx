@@ -9,7 +9,6 @@ const IndividualCard = ({
   cardOwner,
   cardLikes,
 }) => {
-
   const handleDeleteCard = () => {
     fetch(`http://localhost:3000/cards/${cardId}`, {
       method: "DELETE",
@@ -48,22 +47,20 @@ const IndividualCard = ({
   };
   return (
     <div>
-      <div className="card">
-        <div className="card-header">
-          <h3>{cardTitle}</h3>
-          <p>{cardDescription}</p>
+      <div className="board">
+        <div className="text-card">
+          <h2>{cardTitle}</h2>
+          <img id="board-img" src="https://i.imgur.com/000.png" alt="gif iamge"/>
+          <h4>Description: {cardDescription}</h4>
+          <h4>Owner: {cardOwner}</h4>
         </div>
 
-        <div className="card-body">
-          <p>Owner: {cardOwner}</p>
-        </div>
-
-        <div className="card-footer">
-          <button className="upvoteButton" onClick={handleLikeCard}>
+        <div className="button-container">
+          <button className="button" onClick={handleLikeCard}>
             Upvote: {cardLikes}
           </button>
 
-          <button className="deleteButton" onClick={handleDeleteCard}>
+          <button className="button" onClick={handleDeleteCard}>
             Delete
           </button>
         </div>

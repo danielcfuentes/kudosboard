@@ -33,7 +33,7 @@ const Modal = ({ onClose, refreshBoards }) => {
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
 
-    window.location.reload(refreshBoards);
+    window.location.reload();
   };
 
   const handleBoardTitle = (e) => {
@@ -76,7 +76,7 @@ const Modal = ({ onClose, refreshBoards }) => {
             <option value="Inspiration">Inspiration</option>
           </select>
 
-          <label className="modalheaders">(Optional) Arthur:</label>
+          <label className="modalheaders">(Optional) Author:</label>
           <input
             type="text"
             placeholder=""
