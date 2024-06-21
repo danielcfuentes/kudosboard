@@ -12,7 +12,6 @@ const Modal = ({ onClose, refreshBoards }) => {
   };
 
   const handleCreateNewBoard = () => {
-    console.log(boardArthur, boardTitle, boardCategory);
     fetch("http://localhost:3000/boards", {
       method: "POST",
       headers: {
@@ -33,7 +32,8 @@ const Modal = ({ onClose, refreshBoards }) => {
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
-    window.location.reload();
+
+    window.location.reload(refreshBoards);
   };
 
   const handleBoardTitle = (e) => {
@@ -70,7 +70,6 @@ const Modal = ({ onClose, refreshBoards }) => {
           <h4>Category:</h4>
           <select onChange={(e) => handleCategory(e)}>
             <option value="SelectCategory">Select a Category</option>
-            <option value="Recent">Recent</option>
             <option value="Celebration">Celebration</option>
             <option value="Thank You">Thank you</option>
             <option value="Inspiration">Inspiration</option>

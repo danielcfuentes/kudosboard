@@ -34,7 +34,7 @@ const CardPageModal = ({ onClose }) => {
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
-    window.location.reload();
+    window?.location.reload();
   };
 
   const handleCardTitle = (e) => {

@@ -23,17 +23,24 @@ app.get("/boards", async (req, res) => {
 });
 
 // create a new board
-app.post("/boards", async (req, res) => {
-  const { title, category, author } = req.body;
-  const board = await prisma.newBoard.create({
-    data: {
-      title,
-      category,
-      author,
-    },
-  });
-  res.status(200).json(board);
-});
+//GIPHY
+app.post('/boards', async (req, res) => {
+    const { title, category, author } = req.body
+
+    const response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}`)
+    const gifData = await response.json()
+    const imageUrl = gifData.data.images.downsized.url
+
+    const board = await prisma.newBoard.create({
+        data: {
+            title,
+            imageSrc: imageUrl,
+            category,
+            author
+        }
+    })
+    res.json(board)
+})
 
 // delete a board by id
 app.delete("/boards/:id", async (req, res) => {

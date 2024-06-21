@@ -8,6 +8,7 @@ const IndividualBoard = ({
   boardTitle,
   boardCategory,
   boardAuthor,
+  boardImage,
 }) => {
   const handleDeleteBoard = () => {
     fetch(`http://localhost:3000/boards/${boardId}`, {
@@ -34,7 +35,7 @@ const IndividualBoard = ({
       <section className="movie">
         <img
           id="movie-img"
-          src="https://cdn.sanity.io/images/599r6htc/regionalized/f7171a97b5bd927ed40dd8cf654507392f559396-1108x1108.png?w=514&h=514&q=75&fit=max&auto=format"
+          src={boardImage}
         />
         <div className="text-card">
           <h2 id="truncate">{boardTitle} </h2>

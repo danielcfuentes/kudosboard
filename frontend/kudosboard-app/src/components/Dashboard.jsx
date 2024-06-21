@@ -61,6 +61,7 @@ const Dashboard = () => {
         refreshBoards={fetchboards}
         boardId={board.id}
         boardTitle={board.title}
+        boardImage={board.imageSrc}
         boardCategory={board.category}
         boardAuthor={board.author}
       />
@@ -101,7 +102,7 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {openModal && <Modal onClose={handleClose} />}
+      {openModal && <Modal onClose={handleClose} refreshBoards={fetchboards}/>}
 
       {getBoards}
     </div>

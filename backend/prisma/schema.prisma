@@ -17,6 +17,7 @@ model newBoard {
   id       Int       @id @default(autoincrement())
   title    String
   category String
+  imageSrc String
   author   String
   cards    newCard[]
 }
