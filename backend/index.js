@@ -92,8 +92,11 @@ app.listen(PORT, () => {
 app.get("/cards/:id", async (req, res) => {
   const board = await prisma.newBoard.findUnique({
     where: { id: parseInt(req.params.id) },
-    include: { cards: true },
+    include: {
+      cards: true,
+    },
   });
+  console.log(board);
   res.status(200).json(board.cards);
 });
 
@@ -116,7 +119,6 @@ app.post("/cards/:id", async (req, res) => {
   });
   res.status(200).json(card);
 });
-
 
 // delete a card by id
 app.delete("/cards/:id", async (req, res) => {

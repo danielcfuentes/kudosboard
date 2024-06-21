@@ -9,4 +9,18 @@
   height: 100px;
   margin: 10px;
   border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
+}
+.GIFimg:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.GIFSelectedImg{
+
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
 }

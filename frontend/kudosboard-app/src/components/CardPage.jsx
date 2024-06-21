@@ -7,11 +7,22 @@ import "./CardPage.css";
 const CardPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [cards, setCards] = useState([]);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const params = useParams();
 
   useEffect(() => {
-    fetchCards();
-  }, []);
+    if (isDeleted) {
+      fetchCards();
+      setIsDeleted(false);
+    }
+    if (isLiked) {
+      fetchCards();
+      setIsLiked(false);
+    }else {
+      fetchCards();
+    }
+  }, [isDeleted, isLiked]);
 
   async function fetchCards() {
     fetch(`http://localhost:3000/cards/${params.id}`)
@@ -47,6 +58,9 @@ const CardPage = () => {
         cardDescription={card.description}
         cardOwner={card.owner}
         cardLikes={card.likes}
+        refreshPage={fetchCards}
+        setIsDeleted={setIsDeleted}
+        setIsLiked={setIsLiked}
       />
     );
   });
@@ -54,7 +68,7 @@ const CardPage = () => {
   return (
     <div className="bodyOfPage">
       <div className="Createcard">
-        <button className="button" id="button-to-create"onClick={handleOpen}>
+        <button className="button" id="button-to-create" onClick={handleOpen}>
           Create a Card
         </button>
       </div>

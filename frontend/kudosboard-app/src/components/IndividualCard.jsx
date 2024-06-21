@@ -9,8 +9,12 @@ const IndividualCard = ({
   cardImage,
   cardOwner,
   cardLikes,
+  refreshPage,
+  setIsDeleted,
+  setIsLiked,
 }) => {
   const handleDeleteCard = () => {
+    setIsDeleted(true);
     fetch(`http://localhost:3000/cards/${cardId}`, {
       method: "DELETE",
       headers: {
@@ -26,10 +30,10 @@ const IndividualCard = ({
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching posts:", error));
-    window.location.reload();
   };
 
   const handleLikeCard = () => {
+    setIsLiked(true);
     fetch(`http://localhost:3000/cards/like/${cardId}`, {
       method: "PUT",
       headers: {
@@ -51,7 +55,7 @@ const IndividualCard = ({
       <div className="board">
         <div className="text-card">
           <h2>{cardTitle}</h2>
-          <img id="board-img" src={cardImage} alt="gif iamge"/>
+          <img id="board-img" src={cardImage} alt="gif iamge" />
           <h4>Description: {cardDescription}</h4>
           <h4>Owner: {cardOwner}</h4>
         </div>
