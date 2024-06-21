@@ -78,3 +78,48 @@ app.get("/boards/getCategory/:category", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:3000`);
 });
+
+
+// CARD Page
+
+// retrieve all cards
+app.get("/cards", async (req, res) => {
+  const cards = await prisma.newCard.findMany();
+  res.status(200).json(cards);
+});
+
+// create a new card
+app.post("/cards", async (req, res) => {
+  const { title, description, gif, owner} = req.body;
+  const card = await prisma.newCard.create({
+    data: {
+      title,
+      description,
+      gif,
+      owner,
+      likes: 0,
+    },
+  });
+  res.status(200).json(card);
+});
+
+// delete a card by id
+app.delete("/cards/:id", async (req, res) => {
+  const deletedCard = await prisma.newCard.delete({
+    where: { id: parseInt(req.params.id) },
+  });
+  res.status(200).json(deletedCard);
+});
+
+//increment the likes of a card
+app.put("/cards/like/:id", async (req, res) => {
+  const card = await prisma.newCard.findUnique({
+    where: { id: parseInt(req.params.id) },
+  });
+  const newLikes = card.likes + 1;
+  const updatedCard = await prisma.newCard.update({
+    where: { id: parseInt(req.params.id) },
+    data: { likes: newLikes },
+  });
+  res.status(200).json(updatedCard);
+});

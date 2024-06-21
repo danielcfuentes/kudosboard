@@ -12,6 +12,31 @@ const CardPageModal = ({ onClose }) => {
     e.stopPropagation();
   };
 
+  const handleCreateNewCard = () => {
+    fetch("http://localhost:3000/cards", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: cardTitle,
+        description: cardDescription,
+        gif: cardQIF,
+        owner: cardArthur,
+      }),
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error fetching posts:", error));
+    window.location.reload();
+  };
+
   const handleCardTitle = (e) => {
     setCardTitle(e.target.value);
   };
@@ -39,14 +64,14 @@ const CardPageModal = ({ onClose }) => {
             type="text"
             placeholder="Enter Card Title"
             value={cardTitle}
-            onChange={handleCardTitle}
+            onInput={handleCardTitle}
           />
 
           <input
             type="text"
             placeholder="Enter card description"
             value={cardDescription}
-            onChange={handleCardDescription}
+            onInput={handleCardDescription}
           />
 
           <form>
@@ -60,7 +85,9 @@ const CardPageModal = ({ onClose }) => {
               placeholder="Enter owner (optional)"
             />
           </form>
-          <button className="create-button">Create Card</button>
+          <button className="create-button" onClick={handleCreateNewCard}>
+            Create Card
+          </button>
         </div>
       </div>
     </section>
