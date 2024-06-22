@@ -9,7 +9,6 @@ const Footer = () => {
             <h3 className="footer-logo-text">@KudoBoards</h3>
             <h3>Made by: Daniel C. Fuentes</h3>
           </div>
-
         </section>
         <section className="footer1">
           <ul className="footer-social">

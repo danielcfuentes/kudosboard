@@ -20,8 +20,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (isDeleted) {
-      setIsDeleted(false);
       fetchboards();
+      setIsDeleted(false);
     }
     if (isCreated) {
       fetchboards();
@@ -69,7 +69,6 @@ const Dashboard = () => {
     return (
       <IndividualBoard
         key={index}
-        refreshBoards={fetchboards}
         boardId={board.id}
         boardTitle={board.title}
         boardImage={board.imageSrc}
@@ -119,9 +118,7 @@ const Dashboard = () => {
       {openModal && (
         <Modal
           onClose={handleClose}
-          refreshBoards={fetchboards}
           setIsCreated={setIsCreated}
-          setBoards={setBoards}
         />
       )}
 

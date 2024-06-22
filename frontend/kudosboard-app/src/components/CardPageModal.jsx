@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import "./Modal.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import "./CardPageModal.css";
 
@@ -80,8 +80,6 @@ const CardPageModal = ({ onClose }) => {
     }
   };
 
-  console.log("cardGIF:", cardGIF);
-
   // RETURN -------------------------------------------------------------------
   return (
     <section className="modal-overlay" onClick={onClose}>
@@ -160,6 +158,10 @@ const CardPageModal = ({ onClose }) => {
       </div>
     </section>
   );
+};
+
+CardPageModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 export default CardPageModal;

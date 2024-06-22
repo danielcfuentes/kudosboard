@@ -1,6 +1,5 @@
 import "./IndividualBoard.css";
-import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const IndividualCard = ({
   cardId,
@@ -9,7 +8,6 @@ const IndividualCard = ({
   cardImage,
   cardOwner,
   cardLikes,
-  refreshPage,
   setIsDeleted,
   setIsLiked,
 }) => {
@@ -72,6 +70,17 @@ const IndividualCard = ({
       </div>
     </div>
   );
+};
+
+IndividualCard.propTypes = {
+  cardId: PropTypes.number,
+  cardTitle: PropTypes.string,
+  cardDescription: PropTypes.string,
+  cardImage: PropTypes.string,
+  cardOwner: PropTypes.string,
+  cardLikes: PropTypes.number,
+  setIsDeleted: PropTypes.func,
+  setIsLiked: PropTypes.func,
 };
 
 export default IndividualCard;

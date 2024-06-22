@@ -1,9 +1,8 @@
 import "./IndividualBoard.css";
 import React from "react";
 import { Link } from "react-router-dom";
-
+import PropTypes from "prop-types";
 const IndividualBoard = ({
-  refreshBoards,
   boardId,
   boardTitle,
   boardCategory,
@@ -56,6 +55,15 @@ const IndividualBoard = ({
       </section>
     </div>
   );
+};
+
+IndividualBoard.propTypes = {
+  boardId: PropTypes.number.isRequired,
+  boardTitle: PropTypes.string.isRequired,
+  boardCategory: PropTypes.string.isRequired,
+  boardAuthor: PropTypes.string.isRequired,
+  boardImage: PropTypes.string.isRequired,
+  setIsDeleted: PropTypes.func.isRequired,
 };
 
 export default IndividualBoard;

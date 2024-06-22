@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import "./Modal.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const Modal = ({ onClose, refreshBoards, setIsCreated, setBoards }) => {
+const Modal = ({ onClose, setIsCreated }) => {
   const [boardTitle, setBoardTitle] = useState("");
   const [boardCategory, setBoardCategory] = useState("");
   const [boardArthur, setBoardArthur] = useState("");
@@ -12,7 +12,6 @@ const Modal = ({ onClose, refreshBoards, setIsCreated, setBoards }) => {
   };
 
   const handleCreateNewBoard = () => {
-    setIsCreated(true);
     fetch("http://localhost:3000/boards", {
       method: "POST",
       headers: {
@@ -31,10 +30,8 @@ const Modal = ({ onClose, refreshBoards, setIsCreated, setBoards }) => {
         }
         return response.json();
       })
-      .then((data) => console.log(data))
+      .then(() => setIsCreated(true))
       .catch((error) => console.error("Error fetching posts:", error));
-
-
     onClose();
   };
 
@@ -71,7 +68,10 @@ const Modal = ({ onClose, refreshBoards, setIsCreated, setBoards }) => {
           />
 
           <label className="modalheaders">Category:</label>
-          <select onChange={(e) => handleCategory(e)} className="modal-category">
+          <select
+            onChange={(e) => handleCategory(e)}
+            className="modal-category"
+          >
             <option value="SelectCategory">Select a Category</option>
             <option value="Celebration">Celebration</option>
             <option value="Thank You">Thank you</option>
@@ -98,6 +98,7 @@ const Modal = ({ onClose, refreshBoards, setIsCreated, setBoards }) => {
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  setIsCreated: PropTypes.func.isRequired,
 };
 
 export default Modal;
