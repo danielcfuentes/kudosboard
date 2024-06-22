@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import "./CardPageModal.css";
 
-const CardPageModal = ({ onClose }) => {
+const CardPageModal = ({ onClose, setIsCreated }) => {
   const [cardTitle, setCardTitle] = useState("");
   const [cardDescription, setCardDescription] = useState("");
   const [cardArthur, setCardArthur] = useState("");
   const [cardGIF, setCardGIF] = useState([]);
   const [gifUrl, setGifUrl] = useState("");
+
   const params = useParams();
 
   const handleModalClick = (e) => {
@@ -36,9 +37,9 @@ const CardPageModal = ({ onClose }) => {
         }
         return response.json();
       })
-      .then((data) => console.log(data))
+      .then(() => setIsCreated(true))
       .catch((error) => console.error("Error fetching posts:", error));
-    window.location.reload();
+
   };
 
   const handleCardTitle = (e) => {

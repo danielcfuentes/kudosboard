@@ -11,6 +11,7 @@ const CardPage = () => {
   const [isDeleted, setIsDeleted] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [openCommentModal, setOpenCommentModal] = useState(false);
+  const [isCreated, setIsCreated] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -21,10 +22,15 @@ const CardPage = () => {
     if (isLiked) {
       fetchCards();
       setIsLiked(false);
+    }
+    if (isCreated) {
+      fetchCards();
+      setIsCreated(false);
+
     }else {
       fetchCards();
     }
-  }, [isDeleted, isLiked]);
+  }, [isDeleted, isLiked, isCreated], );
 
   async function fetchCards() {
     fetch(`https://kudosboard-qpzh.onrender.com/cards/${params.id}`)
@@ -87,7 +93,7 @@ const CardPage = () => {
       </div>
 
       {openCommentModal && <CommentModal onClose={handleCommentClose}/>}
-      {openModal && <CardPageModal onClose={handleClose} />}
+      {openModal && <CardPageModal onClose={handleClose} setIsCreated={setIsCreated} />}
 
 
       <div className="boards">{getCards}</div>
