@@ -40,6 +40,8 @@ const CardPageModal = ({ onClose, setIsCreated }) => {
       .then(() => setIsCreated(true))
       .catch((error) => console.error("Error fetching posts:", error));
 
+    onClose();
+
   };
 
   const handleCardTitle = (e) => {
