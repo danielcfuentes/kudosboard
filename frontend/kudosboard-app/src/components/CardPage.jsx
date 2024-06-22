@@ -1,4 +1,5 @@
 import CardPageModal from "./CardPageModal";
+import CommentModal from "./CommentModal";
 import React, { useEffect, useState } from "react";
 import IndividualCard from "./IndividualCard";
 import { useParams } from "react-router-dom";
@@ -9,6 +10,7 @@ const CardPage = () => {
   const [cards, setCards] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [openCommentModal, setOpenCommentModal] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -48,20 +50,31 @@ const CardPage = () => {
     setOpenModal(true);
   };
 
+  const handleCommentClose = () => {
+    setOpenCommentModal(false);
+  };
+
+  const handleCommentOpen = () => {
+    setOpenCommentModal(true);
+  };
+
   const getCards = cards?.map((card, index) => {
     return (
-      <IndividualCard
-        key={index}
-        cardId={card.id}
-        cardTitle={card.title}
-        cardImage={card.gif}
-        cardDescription={card.description}
-        cardOwner={card.owner}
-        cardLikes={card.likes}
-        refreshPage={fetchCards}
-        setIsDeleted={setIsDeleted}
-        setIsLiked={setIsLiked}
-      />
+      <div className="card" onClick={handleCommentOpen} key={index}>
+        <IndividualCard
+          key={index}
+          cardId={card.id}
+          cardTitle={card.title}
+          cardImage={card.gif}
+          cardDescription={card.description}
+          cardOwner={card.owner}
+          cardLikes={card.likes}
+          refreshPage={fetchCards}
+          setIsDeleted={setIsDeleted}
+          setIsLiked={setIsLiked}
+        />
+
+      </div>
     );
   });
 
@@ -73,7 +86,9 @@ const CardPage = () => {
         </button>
       </div>
 
+      {openCommentModal && <CommentModal onClose={handleCommentClose}/>}
       {openModal && <CardPageModal onClose={handleClose} />}
+
 
       <div className="boards">{getCards}</div>
     </div>
