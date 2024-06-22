@@ -27,7 +27,7 @@ const App = () => {
           }
         />
         <Route
-          path="/:id"
+          path="/boards/:id"
           element={
             <>
               <Header /> <CardPage /> <Footer />
