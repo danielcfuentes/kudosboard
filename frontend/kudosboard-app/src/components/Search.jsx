@@ -18,7 +18,7 @@ const Search = ({ resetSearch, boardsData }) => {
 
   const performSearch = (value) => {
     console.log("performing search");
-    fetch(`http://localhost:3000/boards/getTitle/${value}`, {
+    fetch(`https://kudosboard-qpzh.onrender.com/boards/getTitle/${value}`, {
       headers: {
         "Content-Type": "application/json",
       },

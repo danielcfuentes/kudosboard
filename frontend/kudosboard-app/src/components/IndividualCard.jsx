@@ -14,7 +14,7 @@ const IndividualCard = ({
   const handleDeleteCard = (e) => {
     e.stopPropagation();
     setIsDeleted(true);
-    fetch(`http://localhost:3000/cards/${cardId}`, {
+    fetch(`https://kudosboard-qpzh.onrender.com/cards/${cardId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const IndividualCard = ({
   const handleLikeCard = (e) => {
     e.stopPropagation();
     setIsLiked(true);
-    fetch(`http://localhost:3000/cards/like/${cardId}`, {
+    fetch(`https://kudosboard-qpzh.onrender.com/cards/like/${cardId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

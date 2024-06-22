@@ -17,7 +17,7 @@ const CardPageModal = ({ onClose }) => {
   };
 
   const handleCreateNewCard = () => {
-    fetch(`http://localhost:3000/cards/${params.id}`, {
+    fetch(`https://kudosboard-qpzh.onrender.com/cards/${params.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -27,7 +27,7 @@ const CardPage = () => {
   }, [isDeleted, isLiked]);
 
   async function fetchCards() {
-    fetch(`http://localhost:3000/cards/${params.id}`)
+    fetch(`https://kudosboard-qpzh.onrender.com/cards/${params.id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

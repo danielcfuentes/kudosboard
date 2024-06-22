@@ -12,7 +12,7 @@ const Modal = ({ onClose, setIsCreated }) => {
   };
 
   const handleCreateNewBoard = () => {
-    fetch("http://localhost:3000/boards", {
+    fetch("https://kudosboard-qpzh.onrender.com/boards", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

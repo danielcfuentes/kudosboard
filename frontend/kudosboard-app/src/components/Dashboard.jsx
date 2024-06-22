@@ -32,7 +32,7 @@ const Dashboard = () => {
   }, [isDeleted, isCreated]);
 
   async function fetchboards() {
-    fetch("http://localhost:3000/boards")
+    fetch("https://kudosboard-qpzh.onrender.com/boards")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,7 +49,9 @@ const Dashboard = () => {
   }
 
   const getCategory = (category) => {
-    fetch(`http://localhost:3000/boards/getCategory/${category.target.value}`)
+    fetch(
+      `https://kudosboard-qpzh.onrender.com/boards/getCategory/${category.target.value}`
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

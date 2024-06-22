@@ -11,7 +11,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/boards"
+          path="/"
           element={
             <>
               <div className="AppHeader">

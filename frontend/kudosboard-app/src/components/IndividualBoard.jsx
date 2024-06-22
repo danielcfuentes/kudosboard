@@ -11,7 +11,7 @@ const IndividualBoard = ({
   setIsDeleted
 }) => {
   const handleDeleteBoard = () => {
-    fetch(`http://localhost:3000/boards/${boardId}`, {
+    fetch(`https://kudosboard-qpzh.onrender.com/boards/${boardId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
